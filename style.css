@@ -1,0 +1,206 @@
+:root {
+    font-size: 62.5%;
+    --fs-wacth: 'Roboto', sans-serif;
+    --base-color: 240;   
+    --hover-color: 150; 
+    --fc-watch: hsla(var(--base-color), 6%, 21%, 1);
+    --primary-color: hsl(var(--base-color), 6%, 21%);
+    --secondary-color: hsla(var(--hover-color), 97%, 28%, 1);
+    --third-color: hsla(var(--hover-color), 97%, 35%, 1);
+    --primary-color-dark: hsl(var(--base-color), 6%, 17%, 1);
+    --secondary-color-dark: hsla(var(--hover-color), 7%, 78%, 1);
+    --third-color-dark: hsla(var(--hover-color), 97%, 35%, 1);
+    --time-transition: .5s .2s;
+
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hide {
+    display: none;
+}
+
+body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    height: 100vh;
+    width: clamp(65rem, 70vw, 82rem);  
+    transition: var(--time-transition);  
+}
+
+
+button {
+    border: none;
+    background: none;
+}
+
+.timer {
+    font-size: 12.6rem;
+    font-family: var(--fs-wacth);
+    font-weight: 500; 
+    color: var(--color-watch);
+    display: flex;
+    transition: var(--time-transition);
+}
+
+
+main svg path {
+    fill: var(--primary-color);
+    transition: var(--time-transition);
+}
+
+
+.controls {
+    display: flex;
+    justify-content: space-between;
+}
+
+.controls button:hover svg path, 
+.pause svg path,
+.dark .controls .pause svg path {
+    fill: var(--secondary-color);
+    transition: var(--time-transition);
+}
+
+.sounds {
+    display: grid;
+    grid-template-areas: "A B";
+    gap: clamp(1.5rem, 2.2vw, 3.2rem);
+}
+
+.sounds svg path:nth-child(2) {
+    fill: var(--primary-color);
+    transition: var(--time-transition);
+}
+
+.sounds svg path:nth-child(1) {
+    fill: #E1E1E6;
+    transition: var(--time-transition);
+}
+
+button {
+    cursor: pointer;
+    position: relative;
+}
+
+.module-sound:hover:not(.select) svg path:nth-child(1){
+    fill: var(--secondary-color);
+    transition: var(--time-transition);
+} 
+
+.module-sound:not(.select):hover svg path:nth-child(2),
+.select button svg path:nth-child(2),
+.select input[type="range"],
+.select input[type="range"]::-webkit-slider-thumb,
+.module-sound:hover input[type="range"],
+.module-sound:hover input[type="range"]::-webkit-slider-thumb  {
+    fill: white;
+    background: white;
+    transition: var(--time-transition);
+}  
+
+.sounds .select svg path:nth-child(1),
+.dark .sounds .select svg path:nth-child(1) {
+    fill: var(--third-color);
+}
+
+.lightmode {
+    position: absolute;
+    top: 6rem;
+    right: 6rem;
+}
+
+.module-sound {
+    position: relative;
+    box-sizing: content-box;
+    width: auto;
+}
+
+
+.slider {
+    position: absolute;
+    bottom: 3.4rem;
+    left: 2.4rem;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    width: 9rem;
+    height: .4rem;
+    background: var(--primary-color);
+    border-radius: .5rem;
+    transition: var(--time-transition);
+  }
+  
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 1.6rem;
+    width: 1.6rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: ew-resize;
+    transition: var(--time-transition);
+  }
+  
+  input[type=range]::-webkit-slider-runnable-track  {
+    -webkit-appearance: none;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+
+/* Dark mode */
+
+.dark {
+    background: #121214;
+    transition: var(--time-transition);
+}
+
+.dark .timer {
+    color: white;
+    transition: var(--time-transition);
+}
+
+.dark .controls svg path {
+    fill: var(--secondary-color-dark);
+    transition: var(--time-transition);
+}
+
+.dark .sounds svg path:nth-child(1) {
+    fill: var(--primary-color-dark);
+    transition: var(--time-transition);
+}
+
+.dark .sounds svg path:nth-child(2) {
+    fill: var(--secondary-color-dark);
+    transition: var(--time-transition);
+}
+
+.dark .module-sound:not(.select):hover svg path:nth-child(2),
+.dark .select button svg path:nth-child(2),
+.dark .select input[type="range"],
+.dark .select input[type="range"]::-webkit-slider-thumb,
+.dark .module-sound:hover input[type="range"],
+.dark .module-sound:hover input[type="range"]::-webkit-slider-thumb,
+.dark input[type="range"],
+.dark input[type="range"]::-webkit-slider-thumb  {
+    fill: var(--secondary-color-dark);
+    background: var(--secondary-color-dark);
+    transition: var(--time-transition);
+}  
+
+@media (max-width:720px) {
+    body {
+        flex-direction: column;
+        justify-content: center;
+        gap: 48px;
+        width: auto;
+    }
+}
